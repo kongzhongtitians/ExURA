@@ -47,7 +47,7 @@ public class NetherstarGeneratorBlockEntity extends BlockEntity implements MenuP
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             // 只有燃料可以放入
-            return stack.is(Items.DRAGON_BREATH);
+            return stack.is(Items.NETHER_STAR);
         }
     };
 
@@ -312,7 +312,7 @@ public class NetherstarGeneratorBlockEntity extends BlockEntity implements MenuP
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.NETHER_STAR);
     }
 
 }

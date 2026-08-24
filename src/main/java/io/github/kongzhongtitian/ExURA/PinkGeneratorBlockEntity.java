@@ -326,7 +326,21 @@ public class PinkGeneratorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.PINK_BANNER) ||
+                stack.is(Items.PINK_BED) ||
+                stack.is(Items.PINK_CANDLE) ||
+                stack.is(Items.PINK_CARPET) ||
+                stack.is(Items.PINK_CONCRETE) ||
+                stack.is(Items.PINK_CONCRETE_POWDER) ||
+                stack.is(Items.PINK_DYE) ||
+                stack.is(Items.PINK_GLAZED_TERRACOTTA) ||
+                stack.is(Items.PINK_PETALS) ||
+                stack.is(Items.PINK_SHULKER_BOX) ||
+                stack.is(Items.PINK_STAINED_GLASS) ||
+                stack.is(Items.PINK_STAINED_GLASS_PANE) ||
+                stack.is(Items.PINK_TERRACOTTA) ||
+                stack.is(Items.PINK_TULIP) ||
+                stack.is(Items.PINK_WOOL);
     }
 
 }

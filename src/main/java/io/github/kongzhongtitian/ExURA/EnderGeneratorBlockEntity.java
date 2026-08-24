@@ -320,7 +320,8 @@ public class EnderGeneratorBlockEntity extends BlockEntity implements MenuProvid
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.ENDER_PEARL) ||
+                stack.is(Items.ENDER_EYE);
     }
 
 }

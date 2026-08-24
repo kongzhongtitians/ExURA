@@ -325,7 +325,11 @@ public class FrostyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.ICE) ||
+                stack.is(Items.PACKED_ICE) ||
+                stack.is(Items.SNOWBALL) ||
+                stack.is(Items.SNOW) ||
+                stack.is(Items.SNOW_BLOCK);
     }
 
 }

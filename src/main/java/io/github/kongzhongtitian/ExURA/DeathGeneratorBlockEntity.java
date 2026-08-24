@@ -324,7 +324,10 @@ public class DeathGeneratorBlockEntity extends BlockEntity implements MenuProvid
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.BONE) ||
+                stack.is(Items.BONE_BLOCK) ||
+                stack.is(Items.ROTTEN_FLESH) ||
+                stack.is(Items.WITHER_SKELETON_SKULL);
     }
 
 }

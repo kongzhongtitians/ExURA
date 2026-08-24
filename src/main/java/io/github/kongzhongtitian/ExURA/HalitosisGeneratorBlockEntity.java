@@ -312,7 +312,7 @@ public class HalitosisGeneratorBlockEntity extends BlockEntity implements MenuPr
     }
 
     public static boolean isFuel(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+        return stack.is(Items.DRAGON_BREATH);
     }
 
 }

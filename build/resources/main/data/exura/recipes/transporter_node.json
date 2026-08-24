@@ -13,11 +13,11 @@
       "item": "minecraft:redstone"
     },
     "C": {
-      "item": "exura:transport_pipe"
+      "item": "pipe_api:transport_pipe"
     }
   },
   "result": {
-    "item": "exura:transporter_node",
+    "item": "pipe_api:transporter_node",
     "count": 4
   }
 }
