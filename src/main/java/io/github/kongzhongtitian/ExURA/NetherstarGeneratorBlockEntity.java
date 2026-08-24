@@ -14,6 +14,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
@@ -288,14 +290,9 @@ public class NetherstarGeneratorBlockEntity extends BlockEntity implements MenuP
         return energyStorage.getMaxEnergyStored();
     }
 
-    // 调试方法
-    public void printStatus() {
-        ExURA.LOGGER.info("发电机状态:");
-        ExURA.LOGGER.info("  能量: {}/{} FE", getEnergyStored(), getMaxEnergyStored());
-        ExURA.LOGGER.info("  燃烧时间: {}/{} ticks", burnTime, currentBurnTime);
-        ExURA.LOGGER.info("  燃料槽: {}", itemHandler.getStackInSlot(FUEL_SLOT));
-        ExURA.LOGGER.info("  活跃: {}", level != null ?
-                level.getBlockState(getBlockPos()).getValue(NetherstarGenerator.ACTIVE) : "未知");
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        // 仅在服务端执行，客户端不执行 tick
+        return level.isClientSide ? null : (l, p, s, be) -> ((HalitosisGeneratorBlockEntity) be).tick(l, p, s);
     }
 
     public boolean stillValid(Player player) {
