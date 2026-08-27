@@ -66,11 +66,10 @@ public class HalitosisGenerator extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-                                                                  BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return level.isClientSide ? null :
                 (level0, pos, state0, blockEntity) -> {
-                    if (blockEntity instanceof ExplosiveGeneratorBlockEntity generator) {
+                    if (blockEntity instanceof HalitosisGeneratorBlockEntity generator) {
                         generator.tick(level0, pos, state0);
                     }
                 };

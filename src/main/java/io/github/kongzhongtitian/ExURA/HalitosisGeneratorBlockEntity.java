@@ -290,11 +290,6 @@ public class HalitosisGeneratorBlockEntity extends BlockEntity implements MenuPr
         return energyStorage.getMaxEnergyStored();
     }
 
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        // 仅在服务端执行，客户端不执行 tick
-        return level.isClientSide ? null : (l, p, s, be) -> ((HalitosisGeneratorBlockEntity) be).tick(l, p, s);
-    }
-
     public boolean stillValid(Player player) {
         if (this.level == null || this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
@@ -311,5 +306,4 @@ public class HalitosisGeneratorBlockEntity extends BlockEntity implements MenuPr
     public static boolean isFuel(ItemStack stack) {
         return stack.is(Items.DRAGON_BREATH);
     }
-
 }

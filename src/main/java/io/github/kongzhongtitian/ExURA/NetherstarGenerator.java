@@ -70,7 +70,7 @@ public class NetherstarGenerator extends BaseEntityBlock {
                                                                   BlockEntityType<T> type) {
         return level.isClientSide ? null :
                 (level0, pos, state0, blockEntity) -> {
-                    if (blockEntity instanceof ExplosiveGeneratorBlockEntity generator) {
+                    if (blockEntity instanceof NetherstarGeneratorBlockEntity generator) {
                         generator.tick(level0, pos, state0);
                     }
                 };
