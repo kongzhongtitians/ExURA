@@ -25,7 +25,7 @@ public class FireMillBlockEntity extends BlockEntity {
             // 检测四个方向的方块
             int currentFire = countFireBlocks(level, pos);
 
-            ExURA.LOGGER.info("fire_wall {} gets {} pieces of fire", pos, currentFire);
+            ExURA.LOGGER.debug("fire_wall {} gets {} pieces of fire", pos, currentFire);
 
             // 只有当水方块数量发生变化时才更新
             if (entity.lastFire != currentFire) {

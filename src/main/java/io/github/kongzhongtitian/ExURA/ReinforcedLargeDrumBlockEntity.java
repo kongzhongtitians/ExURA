@@ -85,7 +85,6 @@ public class ReinforcedLargeDrumBlockEntity extends BlockEntity {
         handleUpdateTag(pkt.getTag());
     }
 
-    // 方便外部获取流体信息的工具方法
     public FluidStack getFluidStack() {
         return tank.getFluid();
     }

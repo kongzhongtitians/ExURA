@@ -27,7 +27,7 @@ public class WaterMillBlockEntity extends BlockEntity {
             // 检测四个方向的方块
             int currentWater = countWaterBlocks(level, pos);
 
-            ExURA.LOGGER.info("water_wall {} gets {} pieces of water", pos, currentWater);
+            ExURA.LOGGER.debug("water_wall {} gets {} pieces of water", pos, currentWater);
 
             // 只有当水方块数量发生变化时才更新
             if (entity.lastWater != currentWater) {

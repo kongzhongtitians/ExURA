@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "exura:upgrade_base"
+    },
+    {
+      "tag": "forge:ingots/gold"
+    },
+    {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  ],
+  "result": {
+    "item": "exura:upgrade_speed",
+    "count": 1
+  }
+}

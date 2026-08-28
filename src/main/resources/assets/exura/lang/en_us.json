@@ -188,7 +188,7 @@
   "block.exura.double_compressed_netherrack": "Double Compressed Netherrack",
   "block.exura.triple_compressed_netherrack": "Triple Compressed Netherrack",
   "block.exura.quadruple_compressed_netherrack": "Quadruple Compressed Netherrack",
-  "block.exura.quintuple_compressed_netherrack": "Quintuple Netherrack",
+  "block.exura.quintuple_compressed_netherrack": "Quintuple Compressed Netherrack",
   "block.exura.sextuple_compressed_netherrack": "Sextuple Compressed Netherrack",
   "block.exura.crossed_stone": "Crossed Stone",
   "block.exura.truchet": "Truchet",
@@ -211,5 +211,7 @@
   "item.exura.opiniumf": "Opinium Core (Damn Good)",
   "item.exura.opiniumg": "Opinium Core (Amazing)",
   "item.exura.opiniumh": "Opinium Core (Inspiring)",
-  "item.exura.opiniumi": "Opinium Core (Perfected)"
+  "item.exura.opiniumi": "Opinium Core (Perfected)",
+  "block.exura.reinforced_large_drum": "Reinforced Large Drum",
+  "block.exura.demonically_gargantuan_drum": "Demonically Gargantuan Drum"
 }

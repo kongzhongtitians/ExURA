@@ -24,7 +24,7 @@ public class SolarPanelBlockEntity extends BlockEntity {
 
             long tick = level.getGameTime();
 
-            ExURA.LOGGER.info("sun {} gets {} pieces of tick", pos, tick);
+            ExURA.LOGGER.debug("sun {} gets {} pieces of tick", pos, tick);
 
             // 只有当水方块数量发生变化时才更新
             if (entity.lastFire != tick && entity.lastFire != 12000) {

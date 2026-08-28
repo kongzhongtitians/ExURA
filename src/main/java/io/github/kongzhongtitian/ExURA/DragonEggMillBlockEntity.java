@@ -25,7 +25,7 @@ public class DragonEggMillBlockEntity extends BlockEntity {
             // 检测四个方向的方块
             int currentDangonEgg = countDangonEggBlocks(level, pos);
 
-            ExURA.LOGGER.info("dangonEgg_wall {} gets {} pieces of dangonEgg", pos, currentDangonEgg);
+            ExURA.LOGGER.debug("dangonEgg_wall {} gets {} pieces of dangonEgg", pos, currentDangonEgg);
 
             // 只有当水方块数量发生变化时才更新
             if (entity.lastDangonEgg != currentDangonEgg) {

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ACA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:apple"
+    },
+    "C": {
+      "item": "exura:magical_wood"
+    }
+  },
+  "result": {
+    "item": "exura:magical_apple",
+    "count": 8
+  }
+}

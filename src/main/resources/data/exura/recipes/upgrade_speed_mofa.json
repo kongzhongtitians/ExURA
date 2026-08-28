@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "exura:magical_apple"
+    },
+    "B": {
+      "item": "exura:upgrade_speed"
+    },
+    "C": {
+      "item": "exura:enchanted_ingot"
+    }
+  },
+  "result": {
+    "item": "exura:upgrade_speed_enchanted",
+    "count": 4
+  }
+}

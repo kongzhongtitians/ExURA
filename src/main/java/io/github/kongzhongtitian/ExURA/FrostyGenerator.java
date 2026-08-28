@@ -40,13 +40,12 @@ public class FrostyGenerator extends BaseEntityBlock {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof FrostyGeneratorBlockEntity generator) {
-                // 添加调试日志
-                ExURA.LOGGER.info("尝试打开发电机GUI，位置: {}", pos);
+                ExURA.LOGGER.debug("尝试打开发电机GUI，位置: {}", pos);
 
                 try {
                     // 使用 NetworkHooks.openScreen 打开GUI
                     NetworkHooks.openScreen((ServerPlayer) player, generator, pos);
-                    ExURA.LOGGER.info("成功发送打开GUI的网络包");
+                    ExURA.LOGGER.debug("成功发送打开GUI的网络包");
                 } catch (Exception e) {
                     ExURA.LOGGER.error("打开GUI失败: {}", e.getMessage(), e);
                 }
