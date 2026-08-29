@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 public class OverclockedGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     // 槽位定义
     public static final int FUEL_SLOT = 0;
-    public static final int ENERGY_CAPACITY = 10000; // 100k FE
+    public static final int ENERGY_CAPACITY = 200000; // 100k FE
     public static final int ENERGY_TRANSFER_RATE = 800; // 1k FE/t
     public static final int FUEL_BURN_TIME = 0;
     public static final int ENERGY_STORED = 1;
@@ -45,9 +46,8 @@ public class OverclockedGeneratorBlockEntity extends BlockEntity implements Menu
 
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            // 只有燃料可以放入
-            return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
-        }
+            return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0
+                    && stack.getItem() != Items.LAVA_BUCKET;}
     };
 
     private final EnergyStorage energyStorage = new EnergyStorage(ENERGY_CAPACITY, ENERGY_TRANSFER_RATE, ENERGY_TRANSFER_RATE, 0);

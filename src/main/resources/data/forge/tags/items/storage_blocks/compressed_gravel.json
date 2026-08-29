@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+  "exura:compressed_gravel",
+    {
+      "id": "excompressum:compressed_gravel",
+      "required": false
+    }
+  ]
+}

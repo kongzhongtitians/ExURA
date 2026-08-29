@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+  "exura:compressed_cobblestone",
+    {
+      "id": "excompressum:compressed_cobblestone",
+      "required": false
+    }
+  ]
+}

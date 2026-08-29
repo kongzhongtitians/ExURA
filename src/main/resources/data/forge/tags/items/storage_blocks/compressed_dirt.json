@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+  "exura:compressed_dirt",
+    {
+      "id": "excompressum:compressed_dirt",
+      "required": false
+    }
+  ]
+}

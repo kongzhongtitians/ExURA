@@ -7,7 +7,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.patchouli.api.PatchouliAPI;
 
 public class GiveBookOnLogin {
-
         @SubscribeEvent
         public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
                 if (event.getEntity().level().isClientSide) return;

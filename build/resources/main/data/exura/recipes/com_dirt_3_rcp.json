@@ -1,37 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "345",
-    "678"
+    "AAA",
+    "AAA",
+    "AAA"
   ],
   "key": {
-    "0": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "1": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "2": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "3": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "4": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "5": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "6": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "7": {
-      "item": "exura:double_compressed_dirt"
-    },
-    "8": {
-      "item": "exura:double_compressed_dirt"
+    "A": {
+      "tag": "forge:storage_blocks/double_compressed_dirt"
     }
   },
   "result": {

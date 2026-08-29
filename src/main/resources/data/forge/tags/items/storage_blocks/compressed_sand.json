@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+  "exura:compressed_sand",
+    {
+      "id": "excompressum:compressed_sand",
+      "required": false
+    }
+  ]
+}

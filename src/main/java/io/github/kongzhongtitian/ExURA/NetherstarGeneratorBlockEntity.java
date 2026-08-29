@@ -33,8 +33,8 @@ import javax.annotation.Nonnull;
 public class NetherstarGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     // 槽位定义
     public static final int FUEL_SLOT = 0;
-    public static final int ENERGY_CAPACITY = 400000; // 100k FE
-    public static final int ENERGY_TRANSFER_RATE = 10000; // 1k FE/t
+    public static final int ENERGY_CAPACITY = 2000000; // 100k FE
+    public static final int ENERGY_TRANSFER_RATE = 8000; // 1k FE/t
     public static final int FUEL_BURN_TIME = 0;
     public static final int ENERGY_STORED = 1;
     public static final int MAX_BURN_TIME = 2;

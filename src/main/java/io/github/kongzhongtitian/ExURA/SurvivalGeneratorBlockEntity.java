@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 public class SurvivalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     // 槽位定义
     public static final int FUEL_SLOT = 0;
-    public static final int ENERGY_CAPACITY = 10000; // 100k FE
+    public static final int ENERGY_CAPACITY = 5000; // 100k FE
     public static final int ENERGY_TRANSFER_RATE = 10; // 1k FE/t
     public static final int FUEL_BURN_TIME = 0;
     public static final int ENERGY_STORED = 1;
@@ -45,8 +46,8 @@ public class SurvivalGeneratorBlockEntity extends BlockEntity implements MenuPro
 
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            // 只有燃料可以放入
-            return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+            return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0
+                    && stack.getItem() != Items.LAVA_BUCKET;
         }
     };
 

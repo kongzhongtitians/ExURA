@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+  "exura:compressed_netherrack",
+    {
+      "id": "excompressum:compressed_natherrack",
+      "required": false
+    }
+  ]
+}
