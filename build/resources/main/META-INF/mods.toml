@@ -1,8 +1,9 @@
 modLoader = "javafml"
+loaderVersion = "[47,48)"
 license = "MIT"
 [[mods]]
 modId = "exura"
-version = "1.2.0-rc2"
+version = "1.2.0-rc4"
 displayName = "Extra Utilities Reborn Again"
 logoFile="logo.png"
 authors = "kongzhongtitian"

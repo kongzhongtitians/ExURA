@@ -127,10 +127,10 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-85-FORGE:api")
     // runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-85-FORGE")
-    implementation fg.deobf("ducktech:pipe_api:1.20.1forge-1.0.2")
+    implementation fg.deobf("gd.rf.kongzhongtitian:PipeAPI:1.20.1forge-1.0.3")
     implementation fg.deobf("ducktech:recipes_api:1.20.1forge-1.1.0")
 
-    jarJar("ducktech:pipe_api:[1.20.1forge-1.0.1,)")
+    jarJar("gd.rf.kongzhongtitian:PipeAPI:[1.20.1forge-1.0.3,)")
     jarJar("ducktech:recipes_api:[1.20.1forge-1.1.0,)")
 }
 tasks.named('processResources', ProcessResources).configure {
