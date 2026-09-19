@@ -3,7 +3,7 @@ loaderVersion = "[47,48)"
 license = "MIT"
 [[mods]]
 modId = "exura"
-version = "1.2.0-rc5"
+version = "1.2.0-rc7"
 displayName = "Extra Utilities Reborn Again"
 logoFile="logo.png"
 authors = "kongzhongtitian"
@@ -29,6 +29,6 @@ side = "BOTH"
 [[dependencies."exura"]]
 modId = "pipe_api"
 mandatory = true
-versionRange = "[1.0.5,)"
+versionRange = "[1.0.6,)"
 ordering = "NONE"
 side = "BOTH"
