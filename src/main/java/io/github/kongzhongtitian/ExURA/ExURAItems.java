@@ -30,6 +30,8 @@ public class ExURAItems {
     public static final RegistryObject<Item> UPGRADE_SPEED_ENCHANTED = ITEMS.register("upgrade_speed_enchanted",
             () -> new Item(new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> UPGRADE_SPEED_SUPER = registerSimpleItem("upgrade_speed_super");
+    public static final RegistryObject<Item> UPGRADE_STACK = ITEMS.register("upgrade_stack",
+            () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MAGICAL_APPLE = registerSimpleFood("magical_apple",10,1.1F);
     public static final RegistryObject<Item> OPINIUMA = registerSimpleItem("opiniuma");
     public static final RegistryObject<Item> OPINIUMB = registerSimpleItem("opiniumb");
