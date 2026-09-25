@@ -2,11 +2,13 @@ package io.github.kongzhongtitian.ExURA;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ExURACreativeTab {
@@ -27,6 +29,12 @@ public class ExURACreativeTab {
                                 }
                             });
                         });
+                        for (Item item : ForgeRegistries.ITEMS) {
+                            ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
+                            if (id != null && "pipe_api".equals(id.getNamespace())) {
+                                output.accept(item);
+                            }
+                        }
                     })
                     .build()
     );
