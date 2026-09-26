@@ -18,7 +18,7 @@ public class GiveBookOnLogin {
                 if (!data.getBoolean(key)) {
                         // 构造 Patchouli 手册 ItemStack
                         ItemStack book = PatchouliAPI.get().getBookStack(
-                                new ResourceLocation(ExURA.MODID, "exura_book")
+                                ResourceLocation.fromNamespaceAndPath(ExURA.MODID, "exura_book")
                         );
                         player.getInventory().add(book);
                         data.putBoolean(key, true);
