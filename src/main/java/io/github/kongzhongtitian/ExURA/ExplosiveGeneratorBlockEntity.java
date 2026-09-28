@@ -260,7 +260,12 @@ public class ExplosiveGeneratorBlockEntity extends BlockEntity implements MenuPr
         if (tag.contains("energy")) {
             CompoundTag energyTag = tag.getCompound("energy");
             int energy = energyTag.getInt("energy");
-            energyStorage.receiveEnergy(energy, false);
+            int toReceive = energy;
+            while (toReceive > 0) {
+                int received = energyStorage.receiveEnergy(toReceive, false);
+                if (received <= 0) break;
+                toReceive -= received;
+            }
         }
 
         burnTime = tag.getInt("burnTime");
