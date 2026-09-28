@@ -105,7 +105,7 @@ public class FireMillBlockEntity extends BlockEntity {
         if (this.lastFire != currentFire) {
             GlobalVars globals = GlobalVars.getInstance();
             int fireDifference = currentFire - this.lastFire;
-            globals.increase("all_GP", fireDifference * 4);
+            globals.increase("all_gp", fireDifference * 4);
 
             this.lastFire = currentFire;
             this.setChanged();

@@ -105,7 +105,7 @@ public class DragonEggMillBlockEntity extends BlockEntity {
         if (this.lastDangonEgg != currentDangonEgg) {
             GlobalVars globals = GlobalVars.getInstance();
             int dangonEggDifference = currentDangonEgg - this.lastDangonEgg;
-            globals.increase("all_GP", dangonEggDifference * 4);
+            globals.increase("all_gp", dangonEggDifference * 500);
 
             this.lastDangonEgg = currentDangonEgg;
             this.setChanged();
