@@ -33,6 +33,7 @@ public class DeathGeneratorBlockEntity extends BlockEntity implements MenuProvid
     public static final int FUEL_SLOT = 0;
     public static final int ENERGY_CAPACITY = 10000; // 100k FE
     public static final int ENERGY_TRANSFER_RATE = 40; // 1k FE/t
+    public static final int MAX_GENERATION_RATE = 150; // 最高发电速率（凋灵骷髅头）
     public static final int FUEL_BURN_TIME = 0;
     public static final int ENERGY_STORED = 1;
     public static final int MAX_BURN_TIME = 2;
@@ -54,7 +55,7 @@ public class DeathGeneratorBlockEntity extends BlockEntity implements MenuProvid
         }
     };
 
-    private final EnergyStorage energyStorage = new EnergyStorage(ENERGY_CAPACITY, ENERGY_TRANSFER_RATE, ENERGY_TRANSFER_RATE, 0);
+    private final EnergyStorage energyStorage = new EnergyStorage(ENERGY_CAPACITY, MAX_GENERATION_RATE, ENERGY_TRANSFER_RATE, 0);
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
@@ -266,7 +267,12 @@ public class DeathGeneratorBlockEntity extends BlockEntity implements MenuProvid
         if (tag.contains("energy")) {
             CompoundTag energyTag = tag.getCompound("energy");
             int energy = energyTag.getInt("energy");
-            energyStorage.receiveEnergy(energy, false);
+            int toReceive = energy;
+            while (toReceive > 0) {
+                int received = energyStorage.receiveEnergy(toReceive, false);
+                if (received <= 0) break;
+                toReceive -= received;
+            }
         }
 
         burnTime = tag.getInt("burnTime");

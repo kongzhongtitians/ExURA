@@ -38,7 +38,7 @@ public class BreakEventHandler {
         }
 
         if (blockState.getBlock() instanceof LavaMill) {
-            handleDragonEggMillBreak(level, pos);
+            handleLavaMillBreak(level, pos);
         }
 
         if (blockState.getBlock() instanceof LunarPanel) {

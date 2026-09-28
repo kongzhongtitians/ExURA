@@ -45,20 +45,21 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
                     recipe.get().getProcessingTime() : 20;
             this.data.set(1, this.maxProgress);
 
+            GlobalVars globals = GlobalVars.getInstance();
+
+            // 开始新一次加工前检查 GP 是否足够，并预扣费用
+            if (progress == 0) {
+                if (globals.getValue("used_gp") + 8 > globals.getValue("all_gp")) {
+                    ExURA.LOGGER.info("no");
+                    return;
+                }
+                globals.increase("used_gp", 8);
+                ExURA.LOGGER.info("yes");
+            }
+
             progress++;
             this.data.set(0, this.progress);
             setChanged();
-
-            GlobalVars globals = GlobalVars.getInstance();
-            if (globals.getValue("used_gp") + 8 >globals.getValue("all_gp")){
-                ExURA.LOGGER.info("no");
-                return;
-            }
-
-            if (progress == 0){
-                globals.increase("used_gp",8);
-                ExURA.LOGGER.info("yes");
-            }
 
             if (progress >= maxProgress) {
                 craftItem(recipe.get());

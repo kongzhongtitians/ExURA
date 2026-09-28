@@ -110,7 +110,7 @@ public class WaterMillBlockEntity extends BlockEntity {
         if (this.lastWater != currentWater) {
             GlobalVars globals = GlobalVars.getInstance();
             int waterDifference = currentWater - this.lastWater;
-            globals.increase("all_GP", waterDifference * 1);
+            globals.increase("all_gp", waterDifference * 1);
 
             this.lastWater = currentWater;
             this.setChanged();
