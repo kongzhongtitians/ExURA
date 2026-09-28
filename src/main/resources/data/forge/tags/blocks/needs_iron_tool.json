@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "exura:sextuple_compressed_cobblestone",
+    "exura:septuple_compressed_cobblestone",
+    "exura:machine_block",
+    "exura:overclocked_generator",
+    "exura:death_generator",
+    "exura:explosive_generator",
+    "exura:ender_generator",
+    "exura:halitosis_generator",
+    "exura:netherstar_generator",
+    "exura:frosty_generator",
+    "exura:pink_generator",
+    "exura:auto_executor",
+    "exura:reinforced_large_drum"
+  ]
+}

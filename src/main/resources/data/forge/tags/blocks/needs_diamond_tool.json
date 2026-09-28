@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "exura:octuple_compressed_cobblestone",
+    "exura:bedrock_cobblestone",
+    "exura:bedrock_slabs",
+    "exura:bedrock_bricks",
+    "exura:dragon_egg_mill",
+    "exura:demonically_gargantuan_drum"
+  ]
+}

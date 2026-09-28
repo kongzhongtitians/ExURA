@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "exura:compressed_sand",
+    "exura:double_compressed_sand",
+    "exura:compressed_gravel",
+    "exura:double_compressed_gravel",
+    "exura:compressed_dirt",
+    "exura:double_compressed_dirt",
+    "exura:triple_compressed_dirt",
+    "exura:quadruple_compressed_dirt"
+  ]
+}
