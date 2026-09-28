@@ -378,7 +378,7 @@ public class ExURABlocks {
             () -> new StoneDrum(STONE_DRUM_PROPERTIES));
 
     public static final RegistryObject<Block> IRON_DRUM = registerBlock("iron_drum",
-            () -> new StoneDrum(IRON_DRUM_PROPERTIES));
+            () -> new IronDrum(IRON_DRUM_PROPERTIES));
 
     public static final RegistryObject<Block> REINFORCED_LARGE_DRUM = registerBlock("reinforced_large_drum",
             () -> new ReinforcedLargeDrum(REINFORCED_DRUM_PROPERTIES));
