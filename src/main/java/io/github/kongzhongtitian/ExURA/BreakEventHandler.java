@@ -93,39 +93,23 @@ public class BreakEventHandler {
         }
     }
 
-    private static void handleSolarPanelBreak(Level level, BlockPos fireMillPos) {
-        // 在方块实体被移除前获取数据
-        if (level.getBlockEntity(fireMillPos) instanceof SolarPanelBlockEntity dragonEggMill) {
-            int up_gp;
-            if (level.getGameTime() % 24000 < 12000){
-                up_gp = 1;
-            }else {
-                up_gp = 0;
+    private static void handleSolarPanelBreak(Level level, BlockPos pos) {
+        // 在方块实体被移除前获取数据：仅当面板当前正在贡献 GP（白天发放中）时扣除
+        if (level.getBlockEntity(pos) instanceof SolarPanelBlockEntity solar) {
+            if (solar.hasBonus()) {
+                GlobalVars.getInstance().decrease("all_gp", 1);
+                System.out.println("solar panel die: " + pos + ", -1 GP");
             }
-
-            GlobalVars globals = GlobalVars.getInstance();
-            globals.decrease("all_gp", up_gp);
-
-            System.out.println("d mill die: " + fireMillPos +
-                    ", remove  1  pieces of water, - " + up_gp + " GP");
         }
     }
 
-    private static void handleLunarPanelBreak(Level level, BlockPos fireMillPos) {
-        // 在方块实体被移除前获取数据
-        if (level.getBlockEntity(fireMillPos) instanceof LunarPanelBlockEntity dragonEggMill) {
-            int up_gp;
-            if (level.getGameTime() % 24000 > 12000){
-                up_gp = 1;
-            }else {
-                up_gp = 0;
+    private static void handleLunarPanelBreak(Level level, BlockPos pos) {
+        // 在方块实体被移除前获取数据：仅当面板当前正在贡献 GP（晚上发放中）时扣除
+        if (level.getBlockEntity(pos) instanceof LunarPanelBlockEntity lunar) {
+            if (lunar.hasBonus()) {
+                GlobalVars.getInstance().decrease("all_gp", 1);
+                System.out.println("lunar panel die: " + pos + ", -1 GP");
             }
-
-            GlobalVars globals = GlobalVars.getInstance();
-            globals.decrease("all_gp", up_gp);
-
-            System.out.println("d mill die: " + fireMillPos +
-                    ", remove  1  pieces of water, - " + up_gp + " GP");
         }
     }
 

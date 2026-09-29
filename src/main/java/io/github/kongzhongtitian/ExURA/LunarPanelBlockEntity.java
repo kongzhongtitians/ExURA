@@ -3,13 +3,12 @@ package io.github.kongzhongtitian.ExURA;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class LunarPanelBlockEntity extends BlockEntity {
     private int cooldown = 0;
-    private long lastFire = 0; // 改为实例变量，每个水车独立
+    private boolean hasBonus = false; // 当前是否正在贡献 1 GP（晚上）
 
     public LunarPanelBlockEntity(BlockPos pos, BlockState state) {
         super(ExURABlockEntity.LUNAR_PANEL_BLOCK_ENTITY.get(), pos, state);
@@ -22,79 +21,40 @@ public class LunarPanelBlockEntity extends BlockEntity {
         if (entity.cooldown >= 40) {
             entity.cooldown = 0;
 
-            long tick = level.getGameTime();
+            boolean isNighttime = level.getGameTime() % 24000 >= 12000;
 
-            ExURA.LOGGER.info("lunar {} gets {} {} {} {} pieces of tick", pos, tick, tick % 24000,entity.lastFire,entity.lastFire % 24000);
+            GlobalVars globals = GlobalVars.getInstance();
 
-            // 只有当水方块数量发生变化时才更新
-            if (entity.lastFire != tick && entity.lastFire != 12000) {
-                if (entity.lastFire % 24000 > 12000 && tick % 24000 < 12000){
-                    GlobalVars globals = GlobalVars.getInstance();
-                    globals.decrease("all_gp",1);
-                } else if (entity.lastFire % 24000 < 12000 && tick % 24000 > 12000) {
-                    GlobalVars globals = GlobalVars.getInstance();
-                    globals.increase("all_gp",1);
-                }
-
-                // 更新当前水车的 lastFire 值
-                entity.lastFire = tick;
-                entity.setChanged(); // 标记需要保存数据
+            if (isNighttime && !entity.hasBonus) {
+                // 进入晚上，发放 1 GP
+                globals.increase("all_gp", 1);
+                entity.hasBonus = true;
+                entity.setChanged();
+            } else if (!isNighttime && entity.hasBonus) {
+                // 进入白天，收回 1 GP
+                globals.decrease("all_gp", 1);
+                entity.hasBonus = false;
+                entity.setChanged();
             }
         }
     }
 
-    /**
-     * 计算周围的水方块数量
-     */
-    private static int countFireBlocks(Level level, BlockPos pos) {
-        int fireCount = 0;
-
-        // 检查四个水平方向
-        BlockPos[] checkPositions = {
-                pos.below() // 南
-        };
-
-        for (BlockPos checkPos : checkPositions) {
-            if (level.getBlockState(checkPos).is(Blocks.FIRE)) {
-                fireCount++;
-            }
-        }
-
-        return fireCount;
+    /** 当前是否正在贡献 GP（用于破坏时扣除） */
+    public boolean hasBonus() {
+        return this.hasBonus;
     }
 
-    /**
-     * 保存数据到NBT
-     */
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
         this.cooldown = tag.getInt("Cooldown");
-        this.lastFire = tag.getInt("LastFire");
+        this.hasBonus = tag.getBoolean("HasBonus");
     }
 
-    /**
-     * 从NBT加载数据
-     */
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("Cooldown", this.cooldown);
-        tag.putLong("LastFire", this.lastFire);
+        tag.putBoolean("HasBonus", this.hasBonus);
     }
-
-    /**
-     * 获取当前水方块数量（用于调试或其他用途）
-     */
-    public int getCurrentFireCount() {
-        if (level == null) return 0;
-        return countFireBlocks(level, getBlockPos());
-    }
-
-    //
-
-    /**
-     * 手动更新水方块计数（如果需要）
-     */
-
 }
