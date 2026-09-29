@@ -49,6 +49,7 @@ public class FrostyGeneratorBlockEntity extends BlockEntity implements MenuProvi
             // 只有燃料可以放入
             return stack.is(Items.ICE) ||
                     stack.is(Items.PACKED_ICE) ||
+                    stack.is(Items.BLUE_ICE) ||
                     stack.is(Items.SNOWBALL) ||
                     stack.is(Items.SNOW) ||
                     stack.is(Items.SNOW_BLOCK);
@@ -332,6 +333,7 @@ public class FrostyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     public static boolean isFuel(ItemStack stack) {
         return stack.is(Items.ICE) ||
                 stack.is(Items.PACKED_ICE) ||
+                stack.is(Items.BLUE_ICE) ||
                 stack.is(Items.SNOWBALL) ||
                 stack.is(Items.SNOW) ||
                 stack.is(Items.SNOW_BLOCK);
