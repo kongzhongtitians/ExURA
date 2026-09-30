@@ -57,7 +57,8 @@ public class AutoExecutorBlockEntity extends BlockEntity {
         fakePlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.DIAMOND_PICKAXE));
 
         // 获取钻石镐对应的掉落物
-        List<ItemStack> drops = Block.getDrops(targetState, serverLevel, targetPos, null, fakePlayer, fakePlayer.getMainHandItem());
+        List<ItemStack> drops = Block.getDrops(targetState, serverLevel, targetPos,
+                level.getBlockEntity(targetPos), fakePlayer, fakePlayer.getMainHandItem());
 
         // 移除方块（不掉落物品）
         level.destroyBlock(targetPos, false);
@@ -91,13 +92,12 @@ public class AutoExecutorBlockEntity extends BlockEntity {
 
         // 尝试放置
         if (stack.getItem() instanceof BlockItem blockItem) {
-            // 放置并消耗物品
             blockItem.place(new net.minecraft.world.item.context.DirectionalPlaceContext(
                     level, targetPos, facing, stack, facing.getOpposite()
             ));
-            // 如果放置上下文没有消耗物品，手动缩减（通常已消耗）
-            if (stack.getCount() > 0) {
-                stack.shrink(1);
+            // 如果放置失败（stack 仍有物品），放回附近容器，避免物品丢失
+            if (!stack.isEmpty()) {
+                insertIntoNearbyContainers(level, pos, stack);
             }
         }
     }

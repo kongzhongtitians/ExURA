@@ -159,9 +159,7 @@ public class GlobalVars {
     }
 
     public int decrease(String varName, int amount) {
-        increase(varName,- amount);
-
-        return 0;
+        return increase(varName, -amount);
     }
 
     /**

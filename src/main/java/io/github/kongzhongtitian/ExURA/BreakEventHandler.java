@@ -66,13 +66,14 @@ public class BreakEventHandler {
     private static void handleFireMillBreak(Level level, BlockPos fireMillPos) {
         // 在方块实体被移除前获取数据
         if (level.getBlockEntity(fireMillPos) instanceof FireMillBlockEntity fireMill) {
-            int gpReduction = 4;
+            int lastFire = fireMill.getLastFireCount();
+            int gpReduction = lastFire * 4;
 
-            GlobalVars globals = GlobalVars.getInstance();
-            globals.decrease("all_gp", gpReduction);
-
-            System.out.println("fire will die: " + fireMillPos +
-                    ", remove  1  pieces of water, - " + gpReduction + " GP");
+            if (gpReduction > 0) {
+                GlobalVars.getInstance().decrease("all_gp", gpReduction);
+                System.out.println("fire will die: " + fireMillPos +
+                        ", remove " + lastFire + " fire, - " + gpReduction + " GP");
+            }
         }
     }
 

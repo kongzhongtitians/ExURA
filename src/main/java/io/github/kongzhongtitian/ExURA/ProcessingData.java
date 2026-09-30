@@ -32,7 +32,7 @@ public class ProcessingData<T extends DTBaseProcessingBlockEntity> implements Co
     }
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
 }
