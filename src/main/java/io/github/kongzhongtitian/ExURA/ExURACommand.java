@@ -75,18 +75,14 @@ public class ExURACommand {
     }
 
     private static int executeTrue(CommandContext<CommandSourceStack> context) {
-        CommandSourceStack source = context.getSource();
-        GlobalVars globals = GlobalVars.getInstance();
-        globals.setValue("cheat_mode",1);
-        source.sendSuccess(() -> Component.literal("OK"), false);
+        CheatModeManager.setCheatMode(true);
+        context.getSource().sendSuccess(() -> Component.literal("OK"), false);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int executeFalse(CommandContext<CommandSourceStack> context) {
-        CommandSourceStack source = context.getSource();
-        GlobalVars globals = GlobalVars.getInstance();
-        globals.setValue("cheat_mode",0);
-        source.sendSuccess(() -> Component.literal("OK"), false);
+        CheatModeManager.setCheatMode(false);
+        context.getSource().sendSuccess(() -> Component.literal("OK"), false);
         return Command.SINGLE_SUCCESS;
     }
 

@@ -14,6 +14,8 @@ public class GlobalVarsEventHandler {
         // 服务器完全启动后再初始化GlobalVars
         ExURA.LOGGER.info("服务器已启动，正在初始化GlobalVars...");
         GlobalVars.getInstance().initialize();
+        // 从配置文件同步作弊模式
+        CheatModeManager.syncFromFile();
     }
 
     @SubscribeEvent
