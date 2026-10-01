@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class DemonicallyGargantuanDrumBlockEntity extends BlockEntity {
 
-    public static final int CAPACITY = 256000; // 毫桶，16 桶
+    public static final int CAPACITY = 65536000; // 毫桶，65536 桶
 
     private final FluidTank tank = new FluidTank(CAPACITY) {
         @Override

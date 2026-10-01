@@ -27,6 +27,7 @@ public class ExURACommand {
                         })
                 )
                 .then(Commands.literal("cheat")
+                        .requires(src -> src.hasPermission(3))
                         .then(Commands.literal("true")
                                 .executes(ExURACommand::executeTrue
                                         )

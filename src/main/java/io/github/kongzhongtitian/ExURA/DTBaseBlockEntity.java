@@ -61,11 +61,11 @@ public abstract class DTBaseBlockEntity extends BlockEntity  {
 
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable net.minecraft.core.Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER){
             return  LazyOptional.of(() -> itemStackHandler).cast();
         }
-        return super.getCapability(cap);
+        return super.getCapability(cap, side);
     }
 
     @Override
