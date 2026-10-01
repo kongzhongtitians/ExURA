@@ -16,14 +16,17 @@ public class ExURACommand {
                 .then(Commands.literal("used_gp")
                         .executes(context -> executeMessage(context)))
                 .then(Commands.literal("cheat")
-                        .requires(src -> src.hasPermission(3))   // OP3 才能用
                         .then(Commands.literal("true")
+                                .requires(src -> src.hasPermission(3))
                                 .executes(ExURACommand::executeTrue))
                         .then(Commands.literal("false")
+                                .requires(src -> src.hasPermission(3))
                                 .executes(context -> executeFalse(context)))
                         .then(Commands.literal("set_all_gp_0")
+                                .requires(src -> src.hasPermission(1))
                                 .executes(context -> executeo(context)))
                         .then(Commands.literal("set_used_gp_0")
+                                .requires(src -> src.hasPermission(1))
                                 .executes(context -> executeot(context)))
                 )
         );
