@@ -15,6 +15,9 @@
     "facing=west": {
       "model": "exura:block/ender_generator",
       "y": 270
+    },
+    "": {
+      "model": "exura:block/ender_generator"
     }
   }
 }

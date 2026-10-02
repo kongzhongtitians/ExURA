@@ -47,12 +47,13 @@ public class Resonator extends FacingBlock implements EntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide){
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof ResonatorBlockEntity ResonatorBlockEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player, ResonatorBlockEntity , pos);
+            if (blockEntity instanceof ResonatorBlockEntity resonatorBlockEntity) {
+                NetworkHooks.openScreen((ServerPlayer) player, resonatorBlockEntity, pos);
 
                 return InteractionResult.SUCCESS;
             }else {
-                throw  new IllegalStateException("our container provider is missing");
+                ExURA.LOGGER.error("Resonator at {} is missing its BlockEntity", pos);
+                return InteractionResult.FAIL;
             }
         }
 

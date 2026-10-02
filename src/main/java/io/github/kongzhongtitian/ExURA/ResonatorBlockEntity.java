@@ -20,6 +20,9 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
     public static final int INPUT_SLOT_2 = 1;
     public static final int OUTPUT_SLOT = 2;
 
+    /** 当前加工是否已预扣 GP（用于中断时归还） */
+    private boolean gpCharged = false;
+
     public ResonatorBlockEntity(BlockPos pos, BlockState state) {
         super(ExURABlockEntity.RESONATOR_BLOCK_ENTITY.get(), pos, state);
         this.setItemStackHandler(5);
@@ -48,12 +51,13 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
             GlobalVars globals = GlobalVars.getInstance();
 
             // 开始新一次加工前检查 GP 是否足够，并预扣费用
-            if (progress == 0) {
+            if (progress == 0 && !gpCharged) {
                 if (globals.getValue("used_gp") + 8 > globals.getValue("all_gp")) {
                     ExURA.LOGGER.info("no");
                     return;
                 }
                 globals.increase("used_gp", 8);
+                gpCharged = true;
                 ExURA.LOGGER.info("yes");
             }
 
@@ -64,9 +68,10 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
             if (progress >= maxProgress) {
                 craftItem(recipe.get());
                 ExURA.LOGGER.info("ok-1");
-                resetProgress();
-                ExURA.LOGGER.info("ok-2");
                 globals.decrease("used_gp",8);
+                gpCharged = false;
+                ExURA.LOGGER.info("ok-2");
+                resetProgress();
                 ExURA.LOGGER.info("ok-3");
             }
         } else {
@@ -80,6 +85,12 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
     }
 
     private void resetProgress() {
+        // 加工被中断（配方失效/输出满）时归还预扣的 GP，避免永久流失
+        if (gpCharged) {
+            GlobalVars globals = GlobalVars.getInstance();
+            globals.decrease("used_gp", 8);
+            gpCharged = false;
+        }
         progress = 0;
         maxProgress = 20;
         this.data.set(0, progress);

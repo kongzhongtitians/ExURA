@@ -21,12 +21,6 @@ versionRange = "[1.20.1]"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies."exura"]]
-modId = "recipesapi"
-mandatory = true
-versionRange = "[1.1.0,)"
-ordering = "NONE"
-side = "BOTH"
-[[dependencies."exura"]]
 modId = "pipe_api"
 mandatory = true
 versionRange = "[1.0.6,)"
