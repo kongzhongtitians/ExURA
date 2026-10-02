@@ -22,7 +22,7 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
 
     public ResonatorBlockEntity(BlockPos pos, BlockState state) {
         super(ExURABlockEntity.RESONATOR_BLOCK_ENTITY.get(), pos, state);
-        this.setItemStackHandler(5);
+        this.setItemStackHandler(3);
     }
 
     @Override
@@ -39,13 +39,12 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
         if (level.isClientSide) return;
 
         Optional<ResonatorRecipe> recipe = getRecipe(ExURARecipe.RESONATOR_RECIPE.get());
+        GlobalVars globals = GlobalVars.getInstance();
 
         if (recipe.isPresent() && hasRecipe(ExURARecipe.RESONATOR_RECIPE.get())) {
             this.maxProgress = recipe.get().getProcessingTime() > 0 ?
                     recipe.get().getProcessingTime() : 20;
             this.data.set(1, this.maxProgress);
-
-            GlobalVars globals = GlobalVars.getInstance();
 
             // 开始新一次加工前检查 GP 是否足够，并预扣费用
             if (progress == 0) {
@@ -70,6 +69,11 @@ public class ResonatorBlockEntity extends DTBaseProcessingBlockEntity implements
                 ExURA.LOGGER.info("ok-3");
             }
         } else {
+            // 加工中途被打断（配方失效或输出槽满）：退还已预扣的 GP
+            if (progress > 0) {
+                globals.decrease("used_gp", 8);
+                ExURA.LOGGER.info("中断加工，退还 8 GP");
+            }
             resetProgress();
         }
     }
