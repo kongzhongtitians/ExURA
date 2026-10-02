@@ -15,9 +15,6 @@
     "facing=west": {
       "model": "exura:block/explosive_generator",
       "y": 270
-    },
-    "": {
-      "model": "exura:block/explosive_generator"
     }
   }
 }

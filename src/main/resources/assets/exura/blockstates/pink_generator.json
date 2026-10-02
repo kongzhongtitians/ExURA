@@ -15,9 +15,6 @@
     "facing=west": {
       "model": "exura:block/pink_generator",
       "y": 270
-    },
-    "": {
-      "model": "exura:block/pink_generator"
     }
   }
 }
