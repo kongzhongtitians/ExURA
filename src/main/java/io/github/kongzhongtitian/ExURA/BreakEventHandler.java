@@ -58,8 +58,7 @@ public class BreakEventHandler {
             GlobalVars globals = GlobalVars.getInstance();
             globals.decrease("all_gp", gpReduction);
 
-            System.out.println("water will die: " + waterMillPos +
-                    ", remove " + lastWater + " pieces of water, - " + gpReduction + " GP");
+            ExURA.LOGGER.debug("water will die: {}, remove {} pieces of water, - {} GP", waterMillPos, lastWater, gpReduction);
         }
     }
 
@@ -71,8 +70,7 @@ public class BreakEventHandler {
 
             if (gpReduction > 0) {
                 GlobalVars.getInstance().decrease("all_gp", gpReduction);
-                System.out.println("fire will die: " + fireMillPos +
-                        ", remove " + lastFire + " fire, - " + gpReduction + " GP");
+                ExURA.LOGGER.debug("fire will die: {}, remove {} fire, - {} GP", fireMillPos, lastFire, gpReduction);
             }
         }
     }
@@ -88,8 +86,7 @@ public class BreakEventHandler {
                 GlobalVars globals = GlobalVars.getInstance();
                 globals.decrease("all_gp", gpReduction);
 
-                System.out.println("d mill die: " + fireMillPos +
-                        ", remove 1 pieces of water, - " + gpReduction + " GP");
+                ExURA.LOGGER.debug("d mill die: {}, remove 1 pieces of water, - {} GP", fireMillPos, gpReduction);
             }
         }
     }
@@ -99,7 +96,7 @@ public class BreakEventHandler {
         if (level.getBlockEntity(pos) instanceof SolarPanelBlockEntity solar) {
             if (solar.hasBonus()) {
                 GlobalVars.getInstance().decrease("all_gp", 1);
-                System.out.println("solar panel die: " + pos + ", -1 GP");
+                ExURA.LOGGER.debug("solar panel die: {}, -1 GP", pos);
             }
         }
     }
@@ -109,7 +106,7 @@ public class BreakEventHandler {
         if (level.getBlockEntity(pos) instanceof LunarPanelBlockEntity lunar) {
             if (lunar.hasBonus()) {
                 GlobalVars.getInstance().decrease("all_gp", 1);
-                System.out.println("lunar panel die: " + pos + ", -1 GP");
+                ExURA.LOGGER.debug("lunar panel die: {}, -1 GP", pos);
             }
         }
     }
@@ -123,8 +120,7 @@ public class BreakEventHandler {
             GlobalVars globals = GlobalVars.getInstance();
             globals.decrease("all_gp", gpReduction);
 
-            System.out.println("lava will die: " + waterMillPos +
-                    ", remove " + lastWater + " pieces of water, - " + gpReduction + " GP");
+            ExURA.LOGGER.debug("lava will die: {}, remove {} pieces of water, - {} GP", waterMillPos, lastWater, gpReduction);
         }
     }
 }

@@ -16,8 +16,7 @@ public class FacingBlock extends HorizontalDirectionalBlock {
     public FacingBlock(Properties p_49795_) {
         super(p_49795_);
 
-        this.defaultBlockState().setValue(FACING, Direction.NORTH);
-
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override

@@ -52,7 +52,8 @@ public class Resonator extends FacingBlock implements EntityBlock {
 
                 return InteractionResult.SUCCESS;
             }else {
-                throw  new IllegalStateException("our container provider is missing");
+                ExURA.LOGGER.error("Resonator at {} is missing its container provider", pos);
+                return InteractionResult.FAIL;
             }
         }
 

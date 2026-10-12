@@ -1,5 +1,6 @@
 package io.github.kongzhongtitian.ExURA;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -20,10 +21,14 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AutoExecutorBlockEntity extends BlockEntity {
     private static final int COOLDOWN_TICKS = 20; // 1秒操作一次
     private int cooldown = 0;
+
+    /** 每个执行器独立的假玩家身份，避免多个执行器共享同一假玩家导致主手物品互相覆盖 */
+    private final GameProfile fakePlayerProfile = new GameProfile(UUID.randomUUID(), "exura_auto_executor");
 
     public AutoExecutorBlockEntity(BlockPos pos, BlockState state) {
         super(ExURABlockEntity.AUTO_EXECUTOR_BLOCK_ENTITY.get(), pos, state);
@@ -53,7 +58,7 @@ public class AutoExecutorBlockEntity extends BlockEntity {
         if (targetState.isAir()) return;
 
         ServerLevel serverLevel = (ServerLevel) level;
-        Player fakePlayer = FakePlayerFactory.getMinecraft(serverLevel);
+        Player fakePlayer = FakePlayerFactory.get(serverLevel, fakePlayerProfile);
         fakePlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.DIAMOND_PICKAXE));
 
         // 获取钻石镐对应的掉落物
@@ -79,7 +84,7 @@ public class AutoExecutorBlockEntity extends BlockEntity {
 
         // 使用假玩家放置方块
         ServerLevel serverLevel = (ServerLevel) level;
-        Player fakePlayer = FakePlayerFactory.getMinecraft(serverLevel);
+        Player fakePlayer = FakePlayerFactory.get(serverLevel, fakePlayerProfile);
         fakePlayer.setItemInHand(InteractionHand.MAIN_HAND, stack);
         fakePlayer.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, facing.toYRot(), 0);
 
