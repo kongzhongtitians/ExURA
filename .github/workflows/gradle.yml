@@ -20,6 +20,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Strip local proxy settings for CI
+        run: sed -i '/^systemProp\.\(http\|https\)\.proxy/d' gradle.properties
+
       - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
@@ -57,6 +60,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Strip local proxy settings for CI
+      run: sed -i '/^systemProp\.\(http\|https\)\.proxy/d' gradle.properties
 
     - name: Set up JDK 17
       uses: actions/setup-java@v5
